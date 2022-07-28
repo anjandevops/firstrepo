@@ -1,0 +1,107 @@
+install docker
+
+sudo yum -y update
+sudo yum install -y docker
+docker
+docker --version
+
+Or 
+
+sudo apt-get remove docker docker-engine docker.io
+sudo apt-get update
+sudo apt install docker.io
+docker -v
+sudo chmod 666 /var/run/docker.sock
+
+docker login
+------------------------
+Docker Images
+
+docker images
+docker pull centos:latest
+docker pull ubuntu:latest
+docker pull nginx:latest
+
+docker run -it ubuntu /bin/bash
+exit
+docker exec -it containerid /bin/bash
+
+docker tag imagid myubnutu
+docker push anbhiman/ddemo
+docker rmi imageid
+histroy
+----------------
+
+docker ps
+docker ps -a
+docker run ImageName
+docker start ContainerName/ID
+docker stop ContainerName/ID
+docker rm ContainerName/ID
+
+-----
+
+Volumes-
+
+1)docker volume  
+
+docker volume create myvol1
+docker volume ls
+docker volume inspect myvol1
+docker volume rm myvolumm1
+docker volume prune 
+
+docker run -it --name=example2 -v v1:/v1 ubuntu:latest    - Run a container with a volume stop immediatly 
+docker run -itd --name ubuntutest1 -v v1:/v1 ubuntu:latest - Run a continer with a volume in run mode
+
+docker run -it --name=example1 --mount source=v1,destination=/v1 ubuntu
+docker run -it --name=example2 --mount source=v1,destination=/v1 ubuntu
+
+2)Mounting a Host Directory as a Data volume
+
+mkdir tmp
+touch file.txt
+docker run -it -v "$(pwd)":/data1 ubuntu
+cd data1
+
+-----------------------------------------------
+docker compose -
+
+docker-compose -v
+mkdir mydockercompose
+cd mydockercompose
+touch docker-compose.yml
+
+version: '3.4'
+services:
+  database:
+    image: redis
+    ports:
+    - 9090:80
+  web:
+    image: nginx
+
+docker-compose up -d
+docker-compose down
+
+sudo apt install lynx
+lynx localhost:9090
+
+docker-compose up -d --scale database=4
+
+if any error install docker compose agin
+
+sudo apt install docker.io docker-compose
+
+
+------------------------------------------------
+docker logs
+
+docker logs CONTAINERid
+docker logs 6cc871763df1 --details
+
+Docker Logs Location -
+/var/lib/docker/containers/<container_id>/<container_id>-json.log
+
+
+
