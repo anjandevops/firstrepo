@@ -1,3 +1,2 @@
 hi i am going to merge the file
-second change
-third change
+
